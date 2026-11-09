@@ -61,14 +61,20 @@ class SharedStats {
     // Number of times a CPU found the ready queue empty and polled it again (busy waiting). Must be 0 after Feature 3.
     static final java.util.concurrent.atomic.AtomicInteger busyWaitPolls = new java.util.concurrent.atomic.AtomicInteger(0);
 
-    // TODO Feature 2: declare the lock(s) protecting the three shared variables above here.
-    // Think about it: ONE lock for the three variables, or ONE lock PER variable? (you must justify it in MY_WORK.md)
+   // Feature 2: three independent counters use three separate, fine-grained locks.
+    private static final ReentrantLock contextLock = new ReentrantLock();
+    private static final ReentrantLock completedLock = new ReentrantLock();
+    private static final ReentrantLock serviceLock = new ReentrantLock();
 
-    public static void incrementContextSwitch() {
-        // TODO Feature 2: protect this critical section
-        int tmp = contextSwitchCount;       // 1) read
-        RaceWindow.pause();                 //    <- another thread can read the SAME value here
-        contextSwitchCount = tmp + 1;       // 2) write  (one increment is lost if someone else did the same)
+ public static void incrementContextSwitch() {
+        contextLock.lock();
+        try {
+            int tmp = contextSwitchCount;
+            RaceWindow.pause(); // keep the original race window, but protect it
+            contextSwitchCount = tmp + 1;
+        } finally {
+            contextLock.unlock();
+        }
     }
 
     public static void incrementCompletedProcess() {
