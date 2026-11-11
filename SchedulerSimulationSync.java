@@ -350,9 +350,10 @@ class CpuWorker extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("CPU-" + cpuId + " interrupted.");
             }
-
-            if (!process.isFinished()) {
-                readyQueue.add(process);         // not finished: back to the ready queue
+///111111111111111111111111111111111111111
+            if (SharedStats.getCompletedProcessCount() == SharedStats.totalProcesses) {  
+                readyQueue.wakeUpAllCPUs(); 
+                return;  
             }
 
             // TODO Feature 3: when the LAST process has completed, wake up the CPUs that are blocked on the
