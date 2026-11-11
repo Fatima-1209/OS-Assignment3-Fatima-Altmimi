@@ -145,15 +145,21 @@ class ReadyQueue {
 ////11111111111111111111111111
     private final Semaphore readyCount = new Semaphore(0);  
 
-    // Add a process to the ready queue (new process, or a process that did not finish its quantum)
+  
+    // 11111111111111111111111111        Add a process to the ready queue (new process, or a process that did not finish its quantum)
     public void add(Process process) {
-        // TODO Feature 1: protect this critical section
         Thread thread = new Thread(process);
-        list.add(thread);
-        map.put(thread, process);
 
-        // TODO Feature 3: signal that one more process is available in the queue
-
+        queueLock.lock();  
+        try { 
+            list.add(thread);
+            map.put(thread, process);
+        } finally {  
+            queueLock.unlock();  
+        }
+///11111111111111111111111
+        readyCount.release();  
+        
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + Colors.RESET +
                 Colors.BLUE + " (Priority: " + process.getPriority() + ") added to ready queue" + Colors.RESET +
                 " │ Remaining: " + Colors.YELLOW + process.getRemainingTime() + "ms" + Colors.RESET +
