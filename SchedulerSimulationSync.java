@@ -77,11 +77,16 @@ class SharedStats {
         }
     }
 
+  ////#####################1111111 add
     public static void incrementCompletedProcess() {
-        // TODO Feature 2: protect this critical section
-        int tmp = completedProcessCount;
-        RaceWindow.pause();
-        completedProcessCount = tmp + 1;
+        completedLock.lock();  
+        try {  
+            int tmp = completedProcessCount;
+            RaceWindow.pause();
+            completedProcessCount = tmp + 1;
+        } finally {  
+            completedLock.unlock();  
+        }
     }
 
     public static void addServiceTime(int ms) {
