@@ -321,20 +321,21 @@ class CpuWorker extends Thread {
 
     @Override
     public void run() {
-        while (SharedStats.getCompletedProcessCount() < SharedStats.totalProcesses) {
+       while (true) {  //#############!!!!!!!!!!!
+            try {  // ## ADDED
+                readyQueue.waitForProcess();  
+            } catch (InterruptedException e) {  
+                Thread.currentThread().interrupt();  
+                return;  
+            }
 
-            // TODO Feature 3: replace this polling loop by a blocking wait on the counting semaphore
+            if (SharedStats.getCompletedProcessCount() == SharedStats.totalProcesses) {  // 111111111111111
+                return;  // 11111111 exit the worker
+            }
+
             Thread thread = readyQueue.poll();
-            if (thread == null) {
-                // ⚠️ BUSY WAITING: the CPU keeps checking an empty queue instead of sleeping until
-                // a process is available. It wastes CPU time and needs the "completed == total" test above to stop.
-                SharedStats.busyWaitPolls.incrementAndGet();      // (counted for the verification block)
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    return;
-                }
-                continue;
+            if (thread == null) {  // ## 11111
+                return;  // ##11111111111
             }
 
             Process process = readyQueue.processOf(thread);
