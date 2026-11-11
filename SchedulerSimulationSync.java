@@ -351,6 +351,10 @@ class CpuWorker extends Thread {
                 System.out.println("CPU-" + cpuId + " interrupted.");
             }
 ///111111111111111111111111111111111111111
+           // ## ADDED
+if (!process.isFinished()) {
+    readyQueue.add(process);
+}
             if (SharedStats.getCompletedProcessCount() == SharedStats.totalProcesses) {  
                 readyQueue.wakeUpAllCPUs(); 
                 return;  
