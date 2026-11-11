@@ -140,9 +140,10 @@ class ReadyQueue {
     private final LinkedList<Thread> list = new LinkedList<>();   // FIFO queue of threads
     private final Map<Thread, Process> map = new HashMap<>();     // thread -> process (same idea as Assignment 1)
 
-    // TODO Feature 1: declare the lock protecting `list` and `map` here
-
-    // TODO Feature 3: declare the counting semaphore that counts the processes waiting in the ready queue here
+ ////11111111111111111111111111
+    private final ReentrantLock queueLock = new ReentrantLock(); 
+////11111111111111111111111111
+    private final Semaphore readyCount = new Semaphore(0);  
 
     // Add a process to the ready queue (new process, or a process that did not finish its quantum)
     public void add(Process process) {
