@@ -168,32 +168,56 @@ class ReadyQueue {
 
     // Remove and return the thread at the head of the queue (or null if the queue is empty)
     public Thread poll() {
-        // TODO Feature 1: protect this critical section
-        if (list.isEmpty()) {
-            return null;
+        queueLock.lock();  // ##111111111111111111111111  
+        try {  // ## ADDED
+            if (list.isEmpty()) {
+                return null;
+            }
+            Thread head = list.getFirst();
+            RaceWindow.pause();
+            list.removeFirst();
+            return head;
+        } finally {  // ##111111111111111111111111111111111 
+            queueLock.unlock();  // ## 11111111111111111111111        
         }
-        Thread head = list.getFirst();      // 1) read the head of the queue
-        RaceWindow.pause();                 //    <- another CPU can read the SAME head here
-        list.removeFirst();                 // 2) remove the head (it may be a different thread by now!)
-        return head;
     }
 
-    public Process processOf(Thread thread) {
-        // TODO Feature 1: protect this access
-        return map.get(thread);
+   public Process processOf(Thread thread) {
+        queueLock.lock();  // ## ADDED: queue protection
+        try {  // ## ADDED
+            return map.get(thread);
+        } finally {  // ## ADDED
+            queueLock.unlock();  // ## ADDED: queue protection
+        }
     }
+
 
     // Names of the processes currently waiting in the queue (used to display the ready queue)
     public String snapshot() {
-        // TODO Feature 1: protect this critical section
-        StringBuilder sb = new StringBuilder();
-        for (Thread t : list) {
-            if (sb.length() > 0) sb.append(" → ");
-            sb.append(map.get(t).getName());
+        queueLock.lock();  // ## 111111111111111111
+        try {  // ##1111111111111111
+            StringBuilder sb = new StringBuilder();
+            for (Thread t : list) {
+                if (sb.length() > 0) sb.append(" → ");
+                sb.append(map.get(t).getName());
+            }
+            return sb.length() == 0 ? "empty" : sb.toString();
+        } finally {  // ##111111111111111
+            queueLock.unlock();  // ## 11111111111111
         }
-        return sb.length() == 0 ? "empty" : sb.toString();
+    }
+
+
+    public void waitForProcess() throws InterruptedException {  // ##111111111111111111111
+        readyCount.acquire();  // ##111111111111111111111111
+    }
+
+
+    public void wakeUpAllCPUs() {  // #1111111111111111111111111111
+        readyCount.release(SharedStats.totalCPUs);  // ## 111111111111111111s
     }
 }
+
 
 // Class representing a process (same as Assignment 1) - executes ONE time quantum per thread start
 class Process implements Runnable {
