@@ -89,18 +89,29 @@ class SharedStats {
         }
     }
 
-    public static void addServiceTime(int ms) {
-        // TODO Feature 2: protect this critical section
-        long tmp = totalServiceTime;
-        RaceWindow.pause();
-        totalServiceTime = tmp + ms;
+    
+/////###################
+   public static void addServiceTime(int ms) {
+        serviceLock.lock();  
+        try {  
+            long tmp = totalServiceTime;
+            RaceWindow.pause();
+            totalServiceTime = tmp + ms;
+        } finally {  
+            serviceLock.unlock();  
+        }
     }
 
-    // Readers must also be protected (a read in the middle of an update is not safe either)
-    public static int getCompletedProcessCount() {
-        // TODO Feature 2: protect this read
-        return completedProcessCount;
+    //  ############          Readers must also be protected (a read in the middle of an update is not safe either)
+     public static int getCompletedProcessCount() {
+        completedLock.lock();  
+        try {  
+            return completedProcessCount;
+        } finally { 
+            completedLock.unlock();  
+        }
     }
+
 
     public static int getContextSwitchCount() {
         // TODO Feature 2: protect this read
