@@ -32,11 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | [ Fatima ibrahim zaid alruziqi] |
+| **Student ID** | [445052065] |
+| **University Email** | 445052065@std.psau.edu.sa |
+| **GitHub Username** | Fatima-1209 |
+| **Repository Link** | https://github.com/Fatima-1209/OS-Assignment3-Fatima-Altmimi |
  
 ---
 
