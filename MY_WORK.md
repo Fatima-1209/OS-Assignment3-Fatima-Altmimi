@@ -2,6 +2,8 @@
 
 > This is the **only file** your instructor reads to grade Parts 3 and 4 (documentation and video). Everything you write here must be **in your own words**.
 
+> **DRAFT — review and personalize before submission.** The reflection paragraphs are example wording based on the supplied source code, not statements verified about my own feelings or study process. Replace each `TODO` with true details and add the original starter output and video link. Keep the instructor section headings unchanged.
+
 ---
 
 ## 🛑 STOP: Read This Before You Do Anything Else
@@ -32,8 +34,8 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [ Fatima ibrahim zaid alruziqi] |
-| **Student ID** | [445052065] |
+| **Full Name** | Fatima ibrahim zaid alruziqi |
+| **Student ID** | 445052065 |
 | **University Email** | 445052065@std.psau.edu.sa |
 | **GitHub Username** | Fatima-1209 |
 | **Repository Link** | https://github.com/Fatima-1209/OS-Assignment3-Fatima-Altmimi |
@@ -42,7 +44,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**: **TODO — paste the real public video URL after uploading `445052065_Assignment3_Demo.mp4`.**
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -132,81 +134,98 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+> **Draft from the visible commit history:** The tasks and dates below are supported by the commits shown in the screenshots (November 9 and 11, 2026), but **exact session times, durations, and personal challenges must be confirmed by me before submission**. Commits made on the same date do not automatically prove separate work sessions. I should only keep entries that describe real sessions.
+
+### Entry 1 - November 9, 2026, TODO: actual session time
+**What I did**: Updated the student ID used for random number generation.
 
 **Details**:
+- Edited `SchedulerSimulationSync.java` to use my student ID as the simulation seed.
+- My commit history includes `Update student ID for random number generation`.
 
-**Challenges**:
+**Challenges**: TODO — describe a challenge from this session, if any (do not invent one).
 
-**Solution**:
+**Solution**: TODO — describe how I addressed that actual challenge; write "No major issue" if appropriate.
 
-**Time spent**:
+**Time spent**: TODO — approximate real duration.
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 2 - November 9, 2026, TODO: actual session time
+**What I did**: Worked on locks for the independent shared statistics.
 
 **Details**:
+- Added fine-grained locking around the shared counters.
+- Used `contextLock`, `completedLock`, and `serviceLock` with `try/finally`.
+- My commit history includes `Add fine-grained locks for shared variables`.
 
-**Challenges**:
+**Challenges**: TODO — fill in a real challenge from this session.
 
-**Solution**:
+**Solution**: TODO — explain the actual fix or decision I made.
 
-**Time spent**:
+**Time spent**: TODO — approximate real duration.
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - November 11, 2026, TODO: actual session time
+**What I did**: Protected the shared ready queue.
 
 **Details**:
+- Used a `ReentrantLock` named `queueLock` around the shared queue operations.
+- Protected `add()`, `poll()`, `processOf()`, and `snapshot()` with `try/finally`.
+- The commit history includes `Add lock for thread-safe access to ready queue`.
 
-**Challenges**:
+**Challenges**: TODO — fill in a real challenge from this session.
 
-**Solution**:
+**Solution**: TODO — explain what I changed to address it.
 
-**Time spent**:
+**Time spent**: TODO — approximate real duration.
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - November 11, 2026, TODO: actual session time
+**What I did**: Replaced repeated empty-queue polling with a counting semaphore.
 
 **Details**:
+- Added `readyCount = new Semaphore(0)` in `ReadyQueue`.
+- Added `readyCount.release()` after `add()` and `readyCount.acquire()` inside `waitForProcess()`.
+- Updated `CpuWorker.run()` to block on `waitForProcess()` instead of busy waiting.
+- The commit history includes `Refactor run method to use blocking wait`.
 
-**Challenges**:
+**Challenges**: TODO — fill in a real challenge from this session.
 
-**Solution**:
+**Solution**: TODO — explain the actual fix or decision I made.
 
-**Time spent**:
+**Time spent**: TODO — approximate real duration.
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - November 11, 2026, TODO: actual session time
+**What I did**: Updated CPU shutdown and handling of unfinished processes.
 
 **Details**:
+- Added `wakeUpAllCPUs()` to release permits after the last process finishes.
+- Kept unfinished processes moving back to the ready queue with `readyQueue.add(process)`.
+- The commit history includes `Implement CPU wake-up on all processes completion` and `Add unfinished process back to ready queue`.
 
-**Challenges**:
+**Challenges**: TODO — fill in a real challenge from this session.
 
-**Solution**:
+**Solution**: TODO — explain how I checked or resolved it.
 
-**Time spent**:
+**Time spent**: TODO — approximate real duration.
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
-**What I did**:
+### Entry 6 - Optional — add a real additional work session if applicable
+**What I did**: TODO — include only if this session really happened; otherwise remove this optional entry's content after confirming the lecturer allows it.
 
-**Details**:
+**Details**: TODO.
 
-**Challenges**:
+**Challenges**: TODO.
 
-**Solution**:
+**Solution**: TODO.
 
-**Time spent**:
+**Time spent**: TODO.
 
 ---
 
@@ -214,13 +233,13 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: TODO — add up actual work sessions, not the time between commits.
 
-**Most challenging part**:
+**Most challenging part**: Suggested topic to personalize: making the blocked CPU threads exit cleanly when all processes are finished.
 
-**Most interesting learning**:
+**Most interesting learning**: Suggested topic to personalize: the difference between protecting shared state with a lock and waiting for available work with a semaphore.
 
-**What I would do differently next time**:
+**What I would do differently next time**: TODO — add an honest observation from my own process.
 
 ---
 
@@ -240,7 +259,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+In this assignment, I learned that using multiple CPU threads can create race conditions when they share data. One example is `contextSwitchCount`, because reading a value and writing an increased value are separate steps. I used `ReentrantLock` to protect critical sections so that only one thread can change shared data at a time. I put `unlock()` in `finally` blocks because the lock should be released even if the protected code fails. I also learned that a counting semaphore is useful when workers need to wait for available processes instead of repeatedly checking the queue. The results helped me understand why synchronization is necessary, not just something added to make the code look safer.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -248,7 +267,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+The part I would choose as my main challenge was stopping CPU worker threads after the last process had finished. A semaphore can make a CPU wait correctly when there is no work, but that also means it might remain blocked at shutdown. I had to understand how `CpuWorker.run()` checks the completed-process counter after `waitForProcess()`. In my code, `wakeUpAllCPUs()` releases permits so blocked CPUs can wake up and check whether the simulation is finished. This was different from the ready-queue lock, because the problem was about waiting and termination rather than two CPUs changing a list together. I would explain this part using the `readyCount` semaphore and the final completed-process check in the code.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -256,7 +275,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I focused on the methods that access shared data and checked where a lock or a semaphore was needed. For the queue, I examined `add()`, `poll()`, `processOf()`, and `snapshot()` instead of only locking one method. For the statistics, I used separate locks for the context-switch counter, completed-process counter, and total service time. I also reviewed how `waitForProcess()` blocks and how `wakeUpAllCPUs()` releases waiting CPU threads at shutdown. To check the result, the supplied modified Java file was compiled and run five times and the four verification values matched each time. Before submitting, I still need to confirm the same results from my GitHub version inside my IDE and describe any actual debugging steps I used.
 
 ## Question 4: Where can synchronization concepts be applied in real-world applications?
 
@@ -264,19 +283,19 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+Synchronization is useful anywhere multiple users or workers access the same data at the same time. In an online ticket-booking system, a lock can help stop two customers from claiming the same seat simultaneously. A banking system also needs to protect balance updates so that concurrent transfers do not overwrite each other. In a print server, a queue contains jobs that several workers may need to access safely. A semaphore can make workers sleep until new jobs are available, similar to `readyCount` in my scheduler. These examples connect to my project because both the ready queue and the shared statistics must remain consistent while multiple CPUs are running.
 
 ### Optional: What would you like to learn more about?
 
-[Any topics related to synchronization or operating systems that you're curious about?]
+Optional — I can mention semaphore fairness, starvation, or deadlock if I genuinely want to explore them further.
 
 ### Optional: How confident do you feel about synchronization concepts now?
 
-[Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
+TODO (optional): choose my real confidence level and explain it in my own words.
 
 ### Optional: Feedback on the assignment
 
-[Any comments? Was it helpful? Too easy or hard? Suggestions?]
+TODO (optional): add my own feedback, or mark this section N/A.
 
 ---
 
@@ -298,20 +317,24 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+In the original starter, the shared updates and ready-queue operations were not protected, so the result could depend on which CPU ran first. In `incrementContextSwitch()`, two CPU threads could both read the same `contextSwitchCount` before either wrote its new value, causing a lost update. `RaceWindow.pause()` makes this timing problem easier to observe, but normal operating-system thread scheduling can cause the same overlap without that call. The exact failed line or exception from **my original starter run** must be included below before this explanation can describe my actual output accurately.
 
 Verification block of the **original starter**:
 ```
-[Paste the verification block (or the exception/watchdog message) of the starter here]
+TODO: Paste the ORIGINAL unmodified starter output using my student ID. If it crashed, paste the exception or watchdog message instead. Do not substitute the example from the instructions.
 ```
 
-Verification block of **my final version**:
+Verification block of **my final version** (five local test runs of the supplied code; reproduce in my IDE before submitting):
 ```
-[Paste the verification block of your final version here (all lines ✔)]
+Context switches (quanta executed)   expected 38       observed 38       ✔
+Completed processes                  expected 19       observed 19       ✔
+Total service time (ms)              expected 112348   observed 112348   ✔
+Busy-waiting polls (must be 0)       expected 0        observed 0        ✔
+✔ All shared values are consistent.
 ```
 
 **Explanation of the timeline:**
-[Explain the lost update step by step.]
+Illustrative interleaving (not a quotation from my output): CPU-1 reads `contextSwitchCount = 12`, then `RaceWindow.pause()` allows CPU-2 to read the same 12; CPU-1 writes 13 and CPU-2 also writes 13. The correct total after two increments is 14, but the stored total is only 13, so one update is lost.
 
 ## Question 2: Critical Sections and Lock Granularity
 
@@ -321,12 +344,15 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+I protected `ReadyQueue.add()`, `poll()`, `processOf()`, and `snapshot()` with `queueLock` because they access the shared list or map. For statistics, I used a different `ReentrantLock` for each variable and protected both its update and its getter, which allows unrelated counters to be updated in parallel but requires more lock objects. Keeping `queueLock` separate prevents queue operations from being delayed by statistics updates, while `lock()` and `unlock()` in `try/finally` provide mutual exclusion for each critical section. Short critical sections help threads make progress when the lock is released, but this does not guarantee every waiting thread will be served in a strict order. Because the default `ReentrantLock` is non-fair, bounded waiting is not guaranteed and a thread might wait longer than other threads under contention.
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
-| [e.g., `ReadyQueue.poll()`] | [lock name] | [reason] |
-| [...] | [...] | [...] |
+| `ReadyQueue.add()` and `poll()` | `queueLock` | Adding and removing queue items must not race |
+| `ReadyQueue.processOf()` and `snapshot()` | `queueLock` | Reading shared queue/map contents must be consistent |
+| `SharedStats.incrementContextSwitch()` and `getContextSwitchCount()` | `contextLock` | Protect the context-switch count from lost updates and unsynchronized reads |
+| `SharedStats.incrementCompletedProcess()` and `getCompletedProcessCount()` | `completedLock` | Protect the completed-process count and shutdown checks |
+| `SharedStats.addServiceTime()` and `getTotalServiceTime()` | `serviceLock` | Protect the accumulated service time from lost updates |
 
 ## Question 3: Busy Waiting vs Semaphore
 
@@ -336,7 +362,7 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+The original worker loop repeatedly checked the ready queue when it was empty, causing busy waiting and using CPU time; the `Busy-waiting polls` value in my original run was **TODO: enter the real number**. In my version, `readyCount` starts at 0 because no processes have been added yet, and each call to `add()` releases one permit to represent a queued process. After the 19 initial `add()` calls and before the CPUs start, the semaphore has 19 permits; when a CPU calls `acquire()`, it takes a permit or blocks until one is available. When the final process completes, `wakeUpAllCPUs()` calls `release(SharedStats.totalCPUs)` so blocked workers can wake and exit after checking the completed-process count. Without that shutdown release, a waiting worker could stay blocked forever and trigger the watchdog.
 
 ## Question 4: Classical Problems and Deadlock
 
@@ -346,25 +372,27 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
+This is the producer-consumer problem: the main thread adds the initial processes as a producer, while CPUs consume items from the ready queue and also become producers when they re-enqueue unfinished processes. If the queue had a maximum capacity `K`, it would need three semaphores: `empty = K`, `full = 0`, and `mutex = 1`. A producer that acquires `mutex` before waiting on `empty` could hold the mutex when the buffer is full, stopping the consumer from taking an item and making space. Acquiring the counting semaphore before the mutex prevents that hold-and-wait deadlock, and a consistent acquisition order can also prevent circular wait when using multiple locks.
+
 **Classical problem and roles**:
-[Name the problem; who is the producer, who is the consumer?]
+Producer-consumer: main produces the initial queue items; CPUs consume queued processes and produce new queue items when unfinished processes are re-enqueued.
 
 **Semaphores for a bounded queue (name and initial value)**:
-[Name the three semaphores and their initial values.]
+`empty = K`, `full = 0`, `mutex = 1` (hypothetical bounded queue).
 
 **Deadlock scenario and prevention**:
-[Describe the scenario and the necessary condition you would break.]
+If a producer holds `mutex` while waiting for a free slot, the consumer cannot enter the critical section to create a slot. Acquire `empty` before `mutex` to avoid holding the mutex while waiting, breaking the hold-and-wait condition for this scenario; use consistent lock order to avoid circular wait with multiple locks.
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. Race conditions and mutual exclusion for shared state
+2. Fine-grained locks and safe critical sections with `try/finally`
+3. Counting semaphores, CPU blocking, and clean shutdown
 
 **Concepts I need to study more:**
-1.
-2.
+1. Fairness and starvation with non-fair locks (edit if needed)
+2. Deadlock prevention in bounded-buffer systems (edit if needed)
 
 ---
 
