@@ -44,7 +44,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: **TODO — paste the real public video URL after uploading `445052065_Assignment3_Demo.mp4`.**
+**Video Link**: **TODO — paste the real public video URL after uploading `[445052065_Assignment3_Demo.mp4](https://drive.google.com/file/d/1o5PHrgWp0Hawai8JF8fUs9AOkxfUfNM-/view?usp=drive_link)`.**
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
